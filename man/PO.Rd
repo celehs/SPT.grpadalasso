@@ -72,7 +72,7 @@ optional list of time-transform functions.
   }
 }
 \details{
-
+ details will be completed in later version
 }
 
 \references{
