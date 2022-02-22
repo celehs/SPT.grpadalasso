@@ -64,7 +64,4 @@ PO.fit = function (delta, X, Z, C, df  , order = 1,
   res = list()
   res$coefficients = beta
   return(res)
-  print(beta)
 }
-
-PO(1,1,1,1,method='z')

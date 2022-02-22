@@ -15,9 +15,14 @@ PO = function (formula, data, C, weights, subset, init,control,
   }
   if (missing(control))
   {
-    control <- PO.control(...)
-    print('control:')
-    print(control)
+    if(method %in% c('U-method','B-spline','NPMLE'))
+    {
+      control <- PO.control(...)
+    }
+    else if(method %in% c('glasso','glasso-PLH'))
+    {
+      control <- PO.glasso.control(...)
+    }
   }
 
 
@@ -382,10 +387,20 @@ PO = function (formula, data, C, weights, subset, init,control,
 
   #===============================================================================#
   #qxa added
-  fit = PO.fit(delta = Y[,2], X = Y[,1], Z = X, C = C, df = df  , order = 1,
+
+  if(method %in% c('U-method','B-spline','NPMLE'))
+  {
+    fit = PO.fit(delta = Y[,2], X = Y[,1], Z = X, C = C, df = df  , order = 1,
+                 method = method,control = control)
+  }
+  else if(method %in% c('glasso','glasso-PLH'))
+  {
+    fit = PO.fit(delta = Y[,2], X = Y[,1], Z = X, C = C, df = df  , order = 1,
+                 method = method,control = control)
+  }
+  fit = PO.glasso.fit(delta = Y[,2], X = Y[,1], Z = X, C = C, df = df  , order = 1,
            method = method,control = control)
-  print("fit:")
-  print(fit)
+
   #===============================================================================#
 
   if (is.character(fit)) {
