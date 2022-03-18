@@ -1,7 +1,60 @@
-PO = function (formula, data, C, weights, subset, init,control,
-          singular.ok = TRUE,model = FALSE,
-          x = FALSE, y = TRUE, tt,
-          method = 'U-method',...)
+#' NPMLE for Logistic-CoxPH Cure-Rate Model
+#' @usage PO(formula, data, C, df, weights, subset, init,control,
+#' singular.ok = TRUE,model = FALSE,x = FALSE, y = TRUE, tt,
+#' method = c('U-method','B-spline','NPMLE','glasso','glasso-PLH'),...)
+#' @param formula a formula object, with the response on the left of a ~
+#' operator, and the terms on the right. The response must be a survival object
+#' as returned by the \code{\link{Surv.cure}} function.
+#' @param data a \code{data.frame} in which to interpret the variables named in
+#'  the \code{formula}, or in the \code{subset} and the \code{weights} argument.
+#' @param C need to edit.
+#' @param df degree of freedom
+#' @param weights vector of case weights, see the note below. For a thorough
+#'  discussion of these see the book by Therneau and Grambsch.
+#' @param subset expression indicating which subset of the rows of data should
+#'  be used in the fit. All observations are included by default.
+#' @param init vector of initial values of the iteration. Default initial value
+#'   is zero for all variables.
+#' @param control Object of class \code{\link{PO.control}} specifying iteration
+#'   limit and other control options. Default is \code{PO.control(...)}.
+#' @param singular.ok   logical value indicating how to handle collinearity in
+#'  the model matrix. If \code{TRUE}, the program will automatically skip over
+#'  columns of the X matrix that are linear combinations of earlier columns.
+#'  In this case the coefficients for such columns will be \code{NA}, and the
+#'  variance matrix will contain zeros. For ancillary calculations, such as the
+#'  linear predictor, the missing coefficients are treated as zeros.
+#' @param model logical value: if \code{TRUE}, the model frame is returned in
+#'  component model.
+#' @param x logical value: if \code{TRUE}, the x matrix is returned in
+#'  component \code{x}.
+#' @param y logical value: if \code{TRUE}, the response vector is returned in component \code{y}.
+#' @param tt optional list of time-transform functions.
+#' @param method a character string specifying the method in \code{c('U-method',
+#' 'B-spline','NPMLE')} for estimation. The default method is the \code{U-method}.
+#' @param ... other parameters passed to \code{PO.control}.
+#' @author Jue Hou
+#' @examples
+#'  # A simulated data set
+#' require(survival)
+#' data('sim_PO_data')
+#' res = PO(Surv(X, delta) ~ Z[,1]+ Z[,2]+ Z[,3],data = sim_PO_data)
+
+#' # Or you may generate another one
+#' set.seed(1)
+#' df = 10
+#' nn = 1000
+#' beta = c(0.5,0,-0.5, rep(0,10))
+#' sim_PO_data = PO.sim(nn, beta,
+#'                      C.gen = function(n)
+#'                        5+rbinom(n,1,0.5)*runif(n, -5, 0))
+
+#' # Fit PO model
+#' res = PO(Surv(X, delta) ~ Z[,1]+ Z[,2]+ Z[,3]+ Z[,4]+ Z[,5]+ Z[,6],data = sim_PO_data)
+#' @export
+PO = function (formula, data, C, df, weights, subset, init,control,
+           singular.ok = TRUE,model = FALSE,
+           x = FALSE, y = TRUE, tt,
+           method = c('U-method','B-spline','NPMLE','glasso','glasso-PLH'),...)
 {
 
   Call <- match.call()
@@ -13,15 +66,18 @@ PO = function (formula, data, C, weights, subset, init,control,
       stop(gettextf("Argument %s not matched", names(extraArgs)[indx ==
                                                                   0L]), domain = NA)
   }
+  method <- match.arg(method)
   if (missing(control))
   {
     if(method %in% c('U-method','B-spline','NPMLE'))
     {
       control <- PO.control(...)
+      print(method)
     }
     else if(method %in% c('glasso','glasso-PLH'))
     {
       control <- PO.glasso.control(...)
+      print('glasso')
     }
   }
 
@@ -386,22 +442,35 @@ PO = function (formula, data, C, weights, subset, init,control,
   }
 
   #===============================================================================#
-  #qxa added
+  #use PO.fit
+  nn = length(Y[,2])
+  if(missing(df)){
+    df = as.integer(nn**(1/3))
+  }
 
   if(method %in% c('U-method','B-spline','NPMLE'))
   {
-    fit = PO.fit(delta = Y[,2], X = Y[,1], Z = X, C = C, df = df  , order = 1,
-                 method = method,control = control)
+
+    if (missing(C)){
+      fit = PO.fit(delta = Y[,2], X = Y[,1], Z = X, df = df  , order = 1,
+                   method = method,control = control)
+    }
+    else{
+      fit = PO.fit(delta = Y[,2], X = Y[,1], Z = X, C = C, df = df  , order = 1,
+                   method = method,control = control)
+    }
   }
   else if(method %in% c('glasso','glasso-PLH'))
   {
-    fit = PO.fit(delta = Y[,2], X = Y[,1], Z = X, C = C, df = df  , order = 1,
-                 method = method,control = control)
+    if (missing(C)){
+      fit = PO.glasso.fit(delta = Y[,2], X = Y[,1], Z = X, df = df  , order = 1,
+                   method = method,control = control)
+    }
+    else{
+      fit = PO.glasso.fit(delta = Y[,2], X = Y[,1], Z = X, C = C, df = df  , order = 1,
+                   method = method,control = control)
+    }
   }
-  fit = PO.glasso.fit(delta = Y[,2], X = Y[,1], Z = X, C = C, df = df  , order = 1,
-           method = method,control = control)
-
-  #===============================================================================#
 
   if (is.character(fit)) {
     fit <- list(fail = fit)
@@ -443,4 +512,13 @@ PO = function (formula, data, C, weights, subset, init,control,
 }
 
 #res = PO.play(Surv(dat$X, dat$delta) ~ dat$Z[,1]+ dat$Z[,2],data = dat)
-res = PO.play(Surv(X, delta) ~ Z[,1]+ Z[,2]+ Z[,3],data = dat)
+# set.seed(1)
+# df = 10
+# nn = 1000
+# beta = c(0.5,0,-0.5, rep(0,10))
+# sim_PO_data = PO.sim(nn, beta,
+#                      C.gen = function(n)
+#                        5+rbinom(n,1,0.5)*runif(n, -5, 0))
+# res = PO(Surv(X, delta) ~ Z[,1]+ Z[,2]+ Z[,3]+ Z[,4]+ Z[,5]+ Z[,6]+ Z[,7]
+#          + Z[,8]+ Z[,9]+ Z[,10]+ Z[,11]+ Z[,12]+ Z[,13],
+#          data = sim_PO_data,method = 'NPMLE')

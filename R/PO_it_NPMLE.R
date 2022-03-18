@@ -24,14 +24,14 @@ PO.NPMLE = function(surv, Z,
                  beta, lam,  maxit = 1000, tol = 1e-6,
                  glm.maxit = 1, max.move = 1, a = log(tol))
 {
-  
+
   bf.t1 = surv[,1] < min(surv[surv[,2]==1,1])
   surv = surv[!bf.t1]
   Z = Z[!bf.t1,]
-  
+
   n = length(surv)
   p = ncol(Z)
-  
+
   # Calculate the baseline
   # Computation can be improved by order the observation times
   X.order = order(surv[,1])
@@ -43,7 +43,7 @@ PO.NPMLE = function(surv, Z,
   tk = tk[!dup.tk]
   tk.pos = match(tk, surv[,1])
   X.to.tk = rep( 0:length(tk),diff(c(0,tk.pos-1,n)))+1
-  
+
   # Initial value
   if(missing(beta))
   {
@@ -55,22 +55,25 @@ PO.NPMLE = function(surv, Z,
   }
   lp = drop(Z %*% beta)
   mX = c(0,cumsum(lam))[X.to.tk]
-  
+
   # Pseudo data
   d.pseudo = c(rep(0:1, c(n,sum(surv[,2]))))
   pseudo.pos = c(1:n , which(surv[,2]==1))
   Z.pseudo = Z[pseudo.pos,]
-  
+
   # Iterative algorithm
   # lam.num = drop(surv[,2] %*% X.eq.t)
   iter = 0
-  
+
   cont.lam = TRUE
+  print(cont.lam)
   while (cont.lam)
   {
     # print(c(a,lam[1:5]))
     a.new = coef(glm(d.pseudo ~ 1, family = binomial,
                  offset = (mX+lp-a)[pseudo.pos]))
+    print('a.new')
+    print(a.new)
     lam.new =  lam.num/(rev(cumsum(rev((1+surv[,2])*expit(lp+mX)-surv[,2])))[tk.pos])
     # neg.lam = lam.new <0
     # lam.new[neg.lam] = lam[neg.lam]/2
@@ -86,12 +89,22 @@ PO.NPMLE = function(surv, Z,
     }
     cont.lam =max(abs(expit(cumsum(c(a,lam)))
                    - expit(cumsum(c(a.new,lam.new))))) > tol
+    print('a')
+    print(a)
+    print('lam')
+    print(lam)
+    print('a.new')
+    print(a.new)
+    print('lam.new')
+    print(lam.new)
+   #  print(max(abs(expit(cumsum(c(a,lam)))
+   #                - expit(cumsum(c(a.new,lam.new))))))
     lam = lam.new
     lp = lp - a + a.new
     a = a.new
     mX = c(0,cumsum(lam))[X.to.tk]
   }
-  
+
   cont.beta = TRUE
   while(cont.beta)
   {
@@ -105,21 +118,21 @@ PO.NPMLE = function(surv, Z,
     rescale =  min(1, max.move/sqrt(sum(update^2+(a.new -a)^2)))
     lam.new = lam + update *rescale
     a.new = a + (a.new-a) *rescale
-    
+
     mX = c(0,cumsum(lam.new))[X.to.tk]
     # X.order = order(surv[,1])
     # plot(surv[X.order,1], mX[X.order], type = 'l')
-    
+
     a.tmp = coef(glm(d.pseudo ~ 1, family = binomial,
                      offset = (mX+lp-a)[pseudo.pos]))
-    defaultW <- getOption("warn") 
-    options(warn = -1) 
+    defaultW <- getOption("warn")
+    options(warn = -1)
     tmp.fit = glm(d.pseudo ~ Z.pseudo, family = binomial,
                  offset = mX[pseudo.pos]
                  ,control = glm.control(maxit = glm.maxit)
                  ,start = c(a.tmp, beta)
                  )
-    options(warn = defaultW) 
+    options(warn = defaultW)
     update = coef(tmp.fit)-c(a.new,beta)
     rescale =  min(1, max.move/sqrt(sum(update^2)))
     iter = iter + tmp.fit$iter
@@ -136,8 +149,8 @@ PO.NPMLE = function(surv, Z,
       stop("Fail to converge at max iteration.")
     }
   }
-  
-  return(list(beta = beta,  lam = lam, a = a, 
+
+  return(list(beta = beta,  lam = lam, a = a,
               tk = tk, iter = iter))
-  
+
 }

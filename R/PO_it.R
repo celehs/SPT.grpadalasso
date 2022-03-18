@@ -1,5 +1,5 @@
 require(survival)
-# 
+#
 # surv = Surv(dat$X, dat$delta)
 # Z = dat$Z
 # df = 10
@@ -12,16 +12,16 @@ require(survival)
 
 
 PO.it = function(surv, Z,  df = round(sqrt(nrow(Z))),
-                 bs.knots, 
-                 beta, lam, GX, a, 
+                 bs.knots,
+                 beta, lam, GX, a,
                  maxit = 1000, tol = 1e-6,
-                 glm.maxit = 1, max.move = 1, 
+                 glm.maxit = 1, max.move = 1,
                  order = 1,
                  lam.type = c("newton","coord-joint", "coord-loop","breslow"))
 {
   n = length(surv)
   p = ncol(Z)
-  
+
   if(missing(bs.knots))
   {
     bs.knots = quantile(surv[surv[,2]==1,1], probs = seq(0,1, length.out = df+2))
@@ -29,12 +29,12 @@ PO.it = function(surv, Z,  df = round(sqrt(nrow(Z))),
     df = length(bs.knots)-2
   }
   interior = (surv[,1] >= bs.knots[2]) & (surv[,1] <= bs.knots[df+1])
-  
+
   # Calculate the bases
   if(order == 1){
     bs.x = bs.1(surv[,1],bs.knots, df)
   }
-  
+
   # Initial value
   if(missing(beta))
   {
@@ -48,30 +48,30 @@ PO.it = function(surv, Z,  df = round(sqrt(nrow(Z))),
       GX = stepfun(Gfit$time, c(1,Gfit$surv))(surv[,1])
     }
     mX = PO.base.ipcw(surv[,1], surv, Z, GX, beta)
-    lam.init = coef(lm(mX ~ bs.x$Ibs, 
+    lam.init = coef(lm(mX ~ bs.x$Ibs,
                        subset = interior))
     a = lam.init[1]
     lam = pmax(0,lam.init[-1])
   }
   mX = drop(bs.x$Ibs %*% lam)
   lp =  drop(Z %*% beta)
-  
+
   # Pseudo data
   d.pseudo = c(rep(0:1, c(n,sum(surv[,2]))))
   pseudo.pos = c(1:n , which(surv[,2]==1))
   Z.pseudo = Z[pseudo.pos,]
-  
+
   if(missing(a))
   {
     a = coef(glm(d.pseudo ~ 1, family = binomial,
                  offset = (mX+lp)[pseudo.pos]))
   }
   lp = lp + a
-  
+
   # Iterative algorithm
   lam.num = drop(surv[,2] %*% bs.x$bs)
   iter = 0
-  
+
   a.old = a
   beta.old = beta
   best.loglik = -Inf
@@ -83,7 +83,7 @@ PO.it = function(surv, Z,  df = round(sqrt(nrow(Z))),
     while (cont.lam)
     {
       # print(lam[1:5])
-      
+
       if(lam.type[1] == "breslow")
       {
         piX = expit(lp+mX)
@@ -122,7 +122,7 @@ PO.it = function(surv, Z,  df = round(sqrt(nrow(Z))),
         # print(lam.hess[1:5,1:5])
         # print(update[1:5])
       }
-      
+
       iter = iter + 1
       if(iter > maxit)
       {
@@ -132,8 +132,8 @@ PO.it = function(surv, Z,  df = round(sqrt(nrow(Z))),
       lam = lam.new
       mX = drop(bs.x$Ibs %*% lam)
     }
-    
-    new.loglik = PO.bs.loglik(surv[,2], Z, bs.x, 
+
+    new.loglik = PO.bs.loglik(surv[,2], Z, bs.x,
                               c(a,beta,lam))
     # print(c(new.loglik,best.loglik, new.loglik < best.loglik))
     if(new.loglik < best.loglik)
@@ -141,7 +141,7 @@ PO.it = function(surv, Z,  df = round(sqrt(nrow(Z))),
       a = a.old + (a-a.old)/2
       beta = beta.old + (beta-beta.old)/2
       lp = a + drop(Z %*% beta)
-      
+
       if(max(abs(beta-beta.old))<tol)
         break
       next
@@ -149,17 +149,17 @@ PO.it = function(surv, Z,  df = round(sqrt(nrow(Z))),
     best.loglik = new.loglik
     # X.order = order(surv[,1])
     # plot(surv[X.order,1], mX[X.order], type = 'l')
-    
+
     a.tmp = coef(glm(d.pseudo ~ 1, family = binomial,
                      offset = (mX+lp-a)[pseudo.pos]))
-    defaultW <- getOption("warn") 
-    options(warn = -1) 
+    defaultW <- getOption("warn")
+    options(warn = -1)
     tmp.fit = glm(d.pseudo ~ Z.pseudo, family = binomial,
                  offset = mX[pseudo.pos]
                  ,control = glm.control(maxit = glm.maxit)
                  ,start = c(a.tmp, beta)
                  )
-    options(warn = defaultW) 
+    options(warn = defaultW)
     update = coef(tmp.fit)-c(a.tmp,beta)
     rescale =  min(1, max.move/sqrt(sum(update^2)))
     iter = iter + tmp.fit$iter
@@ -170,9 +170,9 @@ PO.it = function(surv, Z,  df = round(sqrt(nrow(Z))),
     cont.beta = max(abs(update)) > tol
     a.old = a
     beta.old = beta
-    
+
     # print(best.loglik)
-    
+
     if(iter > maxit)
     {
       stop("Fail to converge at max iteration.")
@@ -182,17 +182,17 @@ PO.it = function(surv, Z,  df = round(sqrt(nrow(Z))),
   {
     warning("Algorithm may not converge.")
   }
-  
-  return(list(beta = beta, a = a, lam = lam, 
+
+  return(list(beta = beta, a = a, lam = lam,
               bs.x = bs.x, iter = iter))
-  
+
 }
-# 
+#
 # delta = Delta
 # bs.x = fit.bs$bs.x
 # abetalam = fit.adaglasso$coefficients
 
-PO.bs.loglik = function(delta, Z, bs.x, 
+PO.bs.loglik = function(delta, Z, bs.x,
                         abetalam)
 {
   if(is.null(dim(abetalam)))
@@ -204,13 +204,12 @@ PO.bs.loglik = function(delta, Z, bs.x,
   dmX = bs.x$bs %*% abetalam[1+ncol(Z)+1:ncol(bs.x$bs),,drop = F]
   dmX[delta==0,] = 1
   dmX[apply(bs.x$bs==0, 1, all),] = 1
-  
-  
+
   out = apply(delta*(lpX + log(dmX)) - (1+delta)*log(1+exp(lpX)),2,mean)
   nan.pos = which(is.nan(out))
   if(any(nan.pos))
     out[nan.pos] = -Inf
-  
+
   out
 }
 
@@ -224,25 +223,25 @@ PO.bs.loglik = function(delta, Z, bs.x,
 # max.move = 1
 # lam.type = "newton"
 
-PO.bs.ploglik = function(surv, Z, bs.x, 
-                         beta, lam, GX, 
+PO.bs.ploglik = function(surv, Z, bs.x,
+                         beta, lam, GX,
                          maxit = 1000, tol = 1e-6,
-                         glm.maxit = 1, max.move = 1, 
+                         glm.maxit = 1, max.move = 1,
                          lam.type = c("newton","coord-joint", "coord-loop","breslow"))
 {
   if(is.null(dim(beta)))
   {
     beta = matrix(beta)
   }
-  
+
   n = length(surv)
   tmpbeta = beta[,ncol(beta)]
   lp = drop(Z %*% tmpbeta)
-  
+
   d.pseudo = c(rep(0:1, c(n,sum(surv[,2]))))
   pseudo.pos = c(1:n , which(surv[,2]==1))
   Z.pseudo = Z[pseudo.pos,]
-  
+
   if(missing(lam))
   {
     if(missing(GX))
@@ -251,7 +250,7 @@ PO.bs.ploglik = function(surv, Z, bs.x,
       GX = stepfun(Gfit$time, c(1,Gfit$surv))(surv[,1])
     }
     mX = PO.base.ipcw(surv[,1], surv, Z, GX, tmpbeta)
-    lam.init = coef(lm(mX ~ bs.x$Ibs, 
+    lam.init = coef(lm(mX ~ bs.x$Ibs,
                        subset = interior))
     a = lam.init[1]
     lam = lam.init[-1]
@@ -260,22 +259,22 @@ PO.bs.ploglik = function(surv, Z, bs.x,
     a = coef(glm(d.pseudo ~ 1, family = binomial,
                  offset = (mX+lp)[pseudo.pos]))
   }
-  
+
   out.a = out.loglik = rep(NA, ncol(beta))
   out.lam = matrix(0, length(lam), ncol(beta))
   for (i in ncol(beta):1)
   {
     lp = a + drop(Z %*% beta[,i])
-    
+
     # Iterative algorithm
     lam.num = drop(surv[,2] %*% bs.x$bs)
     iter = 0
-    
+
     cont.lam = TRUE
     while (cont.lam)
     {
       # print(lam[1:5])
-      
+
       if(lam.type[1] == "breslow")
       {
         piX = expit(lp+mX)
@@ -314,7 +313,7 @@ PO.bs.ploglik = function(surv, Z, bs.x,
         # print(lam.hess[1:5,1:5])
         # print(update[1:5])
       }
-      
+
       iter = iter + 1
       if(iter > maxit)
       {
@@ -328,16 +327,16 @@ PO.bs.ploglik = function(surv, Z, bs.x,
       lp = lp - a + a.new
       a = a.new
     }
-    
+
     dmX = bs.x$bs %*% lam
     dmX[surv[,2]==0] = 1
     dmX[apply(bs.x$bs==0, 1, all)] = 1
-    
+
     out.a[i] = a
     out.lam[,i] = lam
-    out.loglik[i] = mean(surv[,2]*(lp+mX + log(dmX)) - 
+    out.loglik[i] = mean(surv[,2]*(lp+mX + log(dmX)) -
                     (1+surv[,2])*log(1+exp(lp+mX)))
   }
-  
+
   return(list(a = out.a, lam = out.lam, loglik = out.loglik))
 }

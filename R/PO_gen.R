@@ -7,23 +7,26 @@ PO.gen = function(lp, inv.m)
   return(inv.m(logit(runif(length(lp))) - lp))
 }
 
-PO.sim = function(n, beta, 
+
+#' generate data for the example
+#' @export
+PO.sim = function(n, beta,
                   Z.gen = function(n, p) matrix(rnorm(n*p), n, p),
-                  inv.m = exp, 
+                  inv.m = exp,
                   C.gen = function(n) runif(n, 0, 5))
 {
   p = length(beta)
-  
+
   Zn = Z.gen(n,p)
   lp = drop(Zn %*% beta)
-  
+
   Tn = PO.gen(lp, inv.m)
   Cn = C.gen(n)
-  
+
   dn = as.numeric(Tn <= Cn)
   Xn = pmin(Tn, Cn)
-  
-  return(list(delta = dn, X = Xn, 
+
+  return(list(delta = dn, X = Xn,
               Z = Zn, C = Cn))
 }
 
