@@ -12,6 +12,17 @@ PO.sim(
   C.gen = function(n) runif(n, 0, 5)
 )
 }
+\arguments{
+\item{n}{...}
+
+\item{beta}{...}
+
+\item{Z.gen}{...}
+
+\item{inv.m}{...}
+
+\item{C.gen}{...}
+}
 \description{
 generate data for the example
 }
