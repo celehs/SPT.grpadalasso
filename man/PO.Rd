@@ -11,7 +11,7 @@ method = c('U-method','B-spline','NPMLE','glasso','glasso-PLH'),...)
 \arguments{
 \item{formula}{a formula object, with the response on the left of a ~
 operator, and the terms on the right. The response must be a survival object
-as returned by the \code{\link{Surv.cure}} function.}
+as returned by the \code{Surv.cure} function.}
 
 \item{data}{a \code{data.frame} in which to interpret the variables named in
 the \code{formula}, or in the \code{subset} and the \code{weights} argument.}
@@ -29,7 +29,7 @@ be used in the fit. All observations are included by default.}
 \item{init}{vector of initial values of the iteration. Default initial value
 is zero for all variables.}
 
-\item{control}{Object of class \code{\link{PO.control}} specifying iteration
+\item{control}{Object of class \code{PO.control} specifying iteration
 limit and other control options. Default is \code{PO.control(...)}.}
 
 \item{singular.ok}{logical value indicating how to handle collinearity in

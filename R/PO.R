@@ -4,7 +4,7 @@
 #' method = c('U-method','B-spline','NPMLE','glasso','glasso-PLH'),...)
 #' @param formula a formula object, with the response on the left of a ~
 #' operator, and the terms on the right. The response must be a survival object
-#' as returned by the \code{\link{Surv.cure}} function.
+#' as returned by the \code{Surv.cure} function.
 #' @param data a \code{data.frame} in which to interpret the variables named in
 #'  the \code{formula}, or in the \code{subset} and the \code{weights} argument.
 #' @param C need to edit.
@@ -15,7 +15,7 @@
 #'  be used in the fit. All observations are included by default.
 #' @param init vector of initial values of the iteration. Default initial value
 #'   is zero for all variables.
-#' @param control Object of class \code{\link{PO.control}} specifying iteration
+#' @param control Object of class \code{PO.control} specifying iteration
 #'   limit and other control options. Default is \code{PO.control(...)}.
 #' @param singular.ok   logical value indicating how to handle collinearity in
 #'  the model matrix. If \code{TRUE}, the program will automatically skip over
