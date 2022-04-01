@@ -72,8 +72,7 @@ PO.NPMLE = function(surv, Z,
     # print(c(a,lam[1:5]))
     a.new = coef(glm(d.pseudo ~ 1, family = binomial,
                  offset = (mX+lp-a)[pseudo.pos]))
-    print('a.new')
-    print(a.new)
+
     lam.new =  lam.num/(rev(cumsum(rev((1+surv[,2])*expit(lp+mX)-surv[,2])))[tk.pos])
     # neg.lam = lam.new <0
     # lam.new[neg.lam] = lam[neg.lam]/2
@@ -89,14 +88,7 @@ PO.NPMLE = function(surv, Z,
     }
     cont.lam =max(abs(expit(cumsum(c(a,lam)))
                    - expit(cumsum(c(a.new,lam.new))))) > tol
-    print('a')
-    print(a)
-    print('lam')
-    print(lam)
-    print('a.new')
-    print(a.new)
-    print('lam.new')
-    print(lam.new)
+
    #  print(max(abs(expit(cumsum(c(a,lam)))
    #                - expit(cumsum(c(a.new,lam.new))))))
     lam = lam.new
