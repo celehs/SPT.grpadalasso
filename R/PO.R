@@ -156,7 +156,7 @@ PO = function (formula, data, C, df, weights, subset, init,control,
   if (isSurv2) {
     if (!is.null(attr(Terms, "specials")$cluster))
       stop("cluster() cannot appear in the model statement")
-    new <- surv2data(mf)
+    new <- Surv2data(mf)
     mf <- new$mf
     Y <- new$y
     n <- nrow(mf)
@@ -251,8 +251,8 @@ PO = function (formula, data, C, df, weights, subset, init,control,
       }
       if (storage.mode(Y) != "double")
         storage.mode(Y) <- "double"
-      counts <- .Call(Ccoxcount1, Y[sorted, ], as.integer(newstrat))
-      tindex <- sorted[counts$index]
+      #counts <- .Call(Ccoxcount1, Y[sorted, ], as.integer(newstrat))
+      #tindex <- sorted[counts$index]
     }
     else {
       if (length(strats) == 0) {
@@ -268,16 +268,16 @@ PO = function (formula, data, C, df, weights, subset, init,control,
       }
       if (storage.mode(Y) != "double")
         storage.mode(Y) <- "double"
-      counts <- .Call(Ccoxcount2, Y, as.integer(sort.start -
-                                                  1L), as.integer(sort.end - 1L), as.integer(newstrat))
-      tindex <- counts$index
+      # counts <- .Call(Ccoxcount2, Y, as.integer(sort.start -
+      #                                             1L), as.integer(sort.end - 1L), as.integer(newstrat))
+      #tindex <- counts$index
     }
     print('243')
-    Y <- Surv(rep(counts$time, counts$nrisk), counts$status)
+    #Y <- Surv(rep(counts$time, counts$nrisk), counts$status)
     print('245')
     type <- "right"
-    mf <- mf[tindex, ]
-    istrat <- rep(1:length(counts$nrisk), counts$nrisk)
+    #mf <- mf[tindex, ]
+    #istrat <- rep(1:length(counts$nrisk), counts$nrisk)
     weights <- model.weights(mf)
     if (!is.null(weights) && any(!is.finite(weights)))
       stop("weights must be finite")
@@ -308,38 +308,38 @@ PO = function (formula, data, C, df, weights, subset, init,control,
   ncluster <- 0
   contrast.arg <- NULL
   attr(Terms, "intercept") <- 1
-  if (multi) {
-    mcheck <- survcheck2(Y, istate)
-    if (mcheck$flag["overlap"] > 0)
-      stop("data set has overlapping intervals for one or more subjects")
-    transitions <- mcheck$transitions
-    states <- mcheck$states
-      covlist2 <- parsecovar2(covlist, NULL, dformula = dformula,
-                              Terms, transitions, states)
-    tmap <- covlist2$tmap
-    if (!is.null(covlist)) {
-      good.tran <- bad.tran <- rep(FALSE, nrow(Y))
-      termname <- rownames(attr(Terms, "factors"))
-      trow <- (!is.na(match(rownames(tmap), termname)))
-      termiss <- matrix(0L, nrow(mf), ncol(mf))
-      for (i in 1:ncol(mf)) {
-        xx <- is.na(mf[[i]])
-        if (is.matrix(xx))
-          termiss[, i] <- apply(xx, 1, any)
-        else termiss[, i] <- xx
-      }
-
-      n.partially.used <- sum(good.tran & bad.tran & !is.na(Y))
-      omit <- (!good.tran & bad.tran) | is.na(Y)
-      if (all(omit))
-        stop("all observations deleted due to missing values")
-      temp <- setNames(seq(omit)[omit], attr(mf, "row.names")[omit])
-      attr(temp, "class") <- "omit"
-      mf <- mf[!omit, , drop = FALSE]
-      Y <- Y[!omit]
-
-    }
-  }
+  # if (multi) {
+  #   mcheck <- survcheck2(Y, istate)
+  #   if (mcheck$flag["overlap"] > 0)
+  #     stop("data set has overlapping intervals for one or more subjects")
+  #   transitions <- mcheck$transitions
+  #   states <- mcheck$states
+  #     covlist2 <- parsecovar2(covlist, NULL, dformula = dformula,
+  #                             Terms, transitions, states)
+  #   tmap <- covlist2$tmap
+  #   if (!is.null(covlist)) {
+  #     good.tran <- bad.tran <- rep(FALSE, nrow(Y))
+  #     termname <- rownames(attr(Terms, "factors"))
+  #     trow <- (!is.na(match(rownames(tmap), termname)))
+  #     termiss <- matrix(0L, nrow(mf), ncol(mf))
+  #     for (i in 1:ncol(mf)) {
+  #       xx <- is.na(mf[[i]])
+  #       if (is.matrix(xx))
+  #         termiss[, i] <- apply(xx, 1, any)
+  #       else termiss[, i] <- xx
+  #     }
+  #
+  #     n.partially.used <- sum(good.tran & bad.tran & !is.na(Y))
+  #     omit <- (!good.tran & bad.tran) | is.na(Y)
+  #     if (all(omit))
+  #       stop("all observations deleted due to missing values")
+  #     temp <- setNames(seq(omit)[omit], attr(mf, "row.names")[omit])
+  #     attr(temp, "class") <- "omit"
+  #     mf <- mf[!omit, , drop = FALSE]
+  #     Y <- Y[!omit]
+  #
+  #   }
+  # }
   if (length(dropterms)) {
     Terms2 <- Terms[-dropterms]
     X <- model.matrix(Terms2, mf, constrasts.arg = contrast.arg)
@@ -385,49 +385,50 @@ PO = function (formula, data, C, df, weights, subset, init,control,
     class(rval) <- "coxph"
     return(rval)
   }
-  if (multi) {
-    if (length(strats) > 0) {
-      stratum_map <- tmap[c(1L, strats), ]
-      stratum_map[-1, ] <- ifelse(stratum_map[-1, ] >
-                                    0, 1L, 0L)
-      if (nrow(stratum_map) > 2) {
-        temp <- stratum_map[-1, ]
-        if (!all(apply(temp, 2, function(x) all(x ==
-                                                0) || all(x == 1)))) {
-          strata.keep <- mf[, strats]
-          istrat <- sapply(strata.keep, as.numeric)
-        }
-      }
-    }
-    else stratum_map <- tmap[1, , drop = FALSE]
-    cmap <- parsecovar3(tmap, colnames(X), attr(X, "assign"),
-                        covlist2$phbaseline)
-    xstack <- stacker(cmap, stratum_map,
-                      X, Y, strata = istrat, states = states)
-    rkeep <- unique(xstack$rindex)
-    transitions <- survcheck2(Y[rkeep, ],
-                              )$transitions
-    X <- xstack$X
-    Y <- xstack$Y
-    istrat <- xstack$strata
-    if (length(offset))
-      offset <- offset[xstack$rindex]
-    if (length(weights))
-      weights <- weights[xstack$rindex]
-    if (length(cluster))
-      cluster <- cluster[xstack$rindex]
-    t2 <- tmap[-c(1, strats), , drop = FALSE]
-    r2 <- row(t2)[!duplicated(as.vector(t2)) & t2 != 0]
-    c2 <- col(t2)[!duplicated(as.vector(t2)) & t2 != 0]
-    a2 <- lapply(seq(along.with = r2), function(i) {
-      cmap[assign[[r2[i]]], c2[i]]
-    })
-    tab <- table(r2)
-    count <- tab[r2]
-    names(a2) <- ifelse(count == 1, row.names(t2)[r2], paste(row.names(t2)[r2],
-                                                             colnames(cmap)[c2], sep = "_"))
-    assign <- a2
-  }
+  # if (multi) {
+  #   print('excute multi 389 row')
+  #   if (length(strats) > 0) {
+  #    # stratum_map <- tmap[c(1L, strats), ]
+  #     stratum_map[-1, ] <- ifelse(stratum_map[-1, ] >
+  #                                   0, 1L, 0L)
+  #     if (nrow(stratum_map) > 2) {
+  #       temp <- stratum_map[-1, ]
+  #       if (!all(apply(temp, 2, function(x) all(x ==
+  #                                               0) || all(x == 1)))) {
+  #         strata.keep <- mf[, strats]
+  #         istrat <- sapply(strata.keep, as.numeric)
+  #       }
+  #     }
+  #   }
+  #  # else stratum_map <- tmap[1, , drop = FALSE]
+  #   # cmap <- parsecovar3(tmap, colnames(X), attr(X, "assign"),
+  #   #                     covlist2$phbaseline)
+  #   # xstack <- stacker(cmap, stratum_map,
+  #   #                   X, Y, strata = istrat, states = states)
+  #   #rkeep <- unique(xstack$rindex)
+  #   # transitions <- survcheck2(Y[rkeep, ],
+  #   #                           )$transitions
+  #   # X <- xstack$X
+  #   # Y <- xstack$Y
+  #   # istrat <- xstack$strata
+  #   # if (length(offset))
+  #   #   offset <- offset[xstack$rindex]
+  #   # if (length(weights))
+  #   #   weights <- weights[xstack$rindex]
+  #   # if (length(cluster))
+  #   #   cluster <- cluster[xstack$rindex]
+  #  # t2 <- tmap[-c(1, strats), , drop = FALSE]
+  #   r2 <- row(t2)[!duplicated(as.vector(t2)) & t2 != 0]
+  #   c2 <- col(t2)[!duplicated(as.vector(t2)) & t2 != 0]
+  #   a2 <- lapply(seq(along.with = r2), function(i) {
+  #     cmap[assign[[r2[i]]], c2[i]]
+  #   })
+  #   tab <- table(r2)
+  #   count <- tab[r2]
+  #   names(a2) <- ifelse(count == 1, row.names(t2)[r2], paste(row.names(t2)[r2],
+  #                                                            colnames(cmap)[c2], sep = "_"))
+  #   assign <- a2
+  # }
   if (!all(is.finite(X)))
     stop("data contains an infinite predictor")
    if (missing(init))

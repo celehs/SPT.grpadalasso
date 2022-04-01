@@ -57,7 +57,7 @@ PO.fit = function (delta, X, Z, C, df  , order = 1,
                        # tol = control$ipcw.tol
                        )
     print('beta.CWY')
-    print(beta.CWY)
+    #print(beta.CWY)
     tseq = sort(unique(X[delta==1]))
 
     ht = PO.base.ipcw(tseq,Surv(X, delta), Z,
@@ -70,8 +70,6 @@ PO.fit = function (delta, X, Z, C, df  , order = 1,
                      )
 
     ht[is.infinite(ht)] = min(ht[!is.infinite(ht)])
-    print('ht')
-    print(ht)
     fit.npmle = PO.NPMLE(Surv(X, delta), Z,
                          beta = beta.CWY,
                          lam = c(0,diff(ht)),

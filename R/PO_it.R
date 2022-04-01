@@ -229,6 +229,9 @@ PO.bs.ploglik = function(surv, Z, bs.x,
                          glm.maxit = 1, max.move = 1,
                          lam.type = c("newton","coord-joint", "coord-loop","breslow"))
 {
+  bs.knots = bs.x$knots
+
+  interior = (surv[,1] >= bs.knots[2]) & (surv[,1] <= bs.knots[length(bs.knots)-1])  #倒数第二个元素
   if(is.null(dim(beta)))
   {
     beta = matrix(beta)
