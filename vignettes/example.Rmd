@@ -1,0 +1,52 @@
+---
+title: "Simulated Example"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Simulated Example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+#library(SPT.grpadalasso)
+require(survival)
+devtools::load_all(".")
+```
+```{r}
+set.seed(123)
+```
+
+Generate simulated data.
+```{r}
+df = 10
+nn = 1000
+beta = c(0.5,0,-0.5, rep(0,10))
+sim_PO_data = PO.sim(nn, beta,
+                     C.gen = function(n)
+                       5+rbinom(n,1,0.5)*runif(n, -5, 0))
+str(sim_PO_data)
+```
+
+Use U-Method
+```{r}
+res_umethod = PO(Surv(X, delta) ~ Z[,1]+ Z[,2]+ Z[,3]+ Z[,4]+ Z[,5]+ Z[,6]+ Z[,7]
+         + Z[,8]+ Z[,9]+ Z[,10]+ Z[,11]+ Z[,12]+ Z[,13],
+         data = sim_PO_data,method = 'U-method')
+str(res_umethod)
+```
+
+Use NPMLE
+```{r}
+res_npmle = PO(Surv(X, delta) ~ Z[,1]+ Z[,2]+ Z[,3]+ Z[,4]+ Z[,5]+ Z[,6]+ Z[,7]
+         + Z[,8]+ Z[,9]+ Z[,10]+ Z[,11]+ Z[,12]+ Z[,13],
+         data = sim_PO_data,method = 'NPMLE')
+str(res_npmle)
+```
+
