@@ -66,7 +66,6 @@ PO.NPMLE = function(surv, Z,
   iter = 0
 
   cont.lam = TRUE
-  print(cont.lam)
   while (cont.lam)
   {
     # print(c(a,lam[1:5]))
@@ -89,8 +88,6 @@ PO.NPMLE = function(surv, Z,
     cont.lam =max(abs(expit(cumsum(c(a,lam)))
                    - expit(cumsum(c(a.new,lam.new))))) > tol
 
-   #  print(max(abs(expit(cumsum(c(a,lam)))
-   #                - expit(cumsum(c(a.new,lam.new))))))
     lam = lam.new
     lp = lp - a + a.new
     a = a.new
@@ -135,7 +132,6 @@ PO.NPMLE = function(surv, Z,
     a = a.new+update[1]
     lp = a+drop(Z %*% beta)
     lam = lam.new
-    # print(beta)
     if(iter > maxit)
     {
       stop("Fail to converge at max iteration.")

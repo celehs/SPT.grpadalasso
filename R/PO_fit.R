@@ -6,7 +6,6 @@ PO.fit = function (delta, X, Z, C, df  , order = 1,
   method <- match.arg(method)
   res = list()
   if (missing(C)){
-    print('generate GX')
     KMfit = summary(survfit(Surv(X,delta)~1), time = sort(unique(X)))
     GX = stepfun(KMfit$time, c(1,KMfit$surv))(X)
     Gtseq = stepfun(KMfit$time, c(1,KMfit$surv))(tseq)
@@ -56,8 +55,6 @@ PO.fit = function (delta, X, Z, C, df  , order = 1,
                        # maxit = control$ipcw.maxit,
                        # tol = control$ipcw.tol
                        )
-    print('beta.CWY')
-    #print(beta.CWY)
     tseq = sort(unique(X[delta==1]))
 
     ht = PO.base.ipcw(tseq,Surv(X, delta), Z,
