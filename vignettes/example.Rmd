@@ -15,9 +15,9 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-#library(SPT.grpadalasso)
+library(SPT.grpadalasso)
 require(survival)
-devtools::load_all(".")
+
 ```
 ```{r}
 set.seed(123)
