@@ -410,3 +410,5 @@ PO = function (formula, data, C, df, weights, subset, init,control,
   fit
 }
 
+# GX = 1-ecdf(sim_PO_data$C)(sim_PO_data$X-1e-8)
+# beta.CWY = PO.ipcw(Surv(sim_PO_data$X, sim_PO_data$delta), sim_PO_data$Z,GX)

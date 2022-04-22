@@ -6,9 +6,9 @@ PO.fit = function (delta, X, Z, C, df  , order = 1,
   method <- match.arg(method)
   res = list()
   if (missing(C)){
-    KMfit = summary(survfit(Surv(X,delta)~1), time = sort(unique(X)))
-    GX = stepfun(KMfit$time, c(1,KMfit$surv))(X)
-    Gtseq = stepfun(KMfit$time, c(1,KMfit$surv))(tseq)
+    KMfit = summary(survfit(Surv(X,1-delta)~1), time = sort(unique(X-1e-8)))
+    GX = stepfun(KMfit$time, c(1,KMfit$surv))(X-1e-8)
+    Gtseq = stepfun(KMfit$time, c(1,KMfit$surv))(tseq-1e-8)
   }
   else{
     GX = 1-ecdf(C)(X-1e-8)
@@ -16,9 +16,8 @@ PO.fit = function (delta, X, Z, C, df  , order = 1,
   }
 
   if(method == 'U-method'){
-    beta = PO.ipcw(Surv(X, delta), Z,GX, maxit = control$ipcw.maxit,tol = control$ipcw.tol)
-
-
+    print(GX)
+    beta = PO.ipcw(Surv(X, delta), Z,GX, maxit = control$ipcw.maxit, tol = control$ipcw.tol)
     ht = PO.base.ipcw(tseq,Surv(X, delta), Z,
                       Gtseq,
                       beta)
