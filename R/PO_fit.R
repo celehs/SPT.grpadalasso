@@ -46,7 +46,9 @@ PO.fit = function (delta, X, Z, C, df  , order = 1,
                    max.move = control$it.max.move,
                    order = control$order,
                    )
+
     res = fit.bs
+    names(res)[1] = 'coefficients'
   }
   else if(method == 'NPMLE')
   {
@@ -75,8 +77,7 @@ PO.fit = function (delta, X, Z, C, df  , order = 1,
                          glm.maxit = control$NPMLE.glm.maxit,
                          max.move = control$NPMLE.max.move
                          )
-    beta = fit.npmle$beta
-    res$coefficients = beta
+    res$coefficients = fit.npmle$beta
   }
   return(res)
 }
