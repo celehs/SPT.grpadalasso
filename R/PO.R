@@ -56,7 +56,6 @@ PO = function (formula, data, C, df, weights, subset, init,control,
            x = FALSE, y = TRUE, tt,
            method = c('U-method','B-spline','NPMLE','glasso','glasso-PLH'),...)
 {
-
   Call <- match.call()
   extraArgs <- list(...)
   if (length(extraArgs)) {
@@ -78,8 +77,6 @@ PO = function (formula, data, C, df, weights, subset, init,control,
       control <- PO.glasso.control(...)
     }
   }
-
-
   if (missing(formula))
     stop("a formula argument is required")
   ss <- c("cluster", "offset")
@@ -162,7 +159,6 @@ PO = function (formula, data, C, df, weights, subset, init,control,
   else {
     if (!is.Surv(Y))
       stop("Response must be a survival object")
-#    istate <- model.extract(mf, "istate")
   }
   if (n == 0)
     stop("No (non-missing) observations")
@@ -182,8 +178,6 @@ PO = function (formula, data, C, df, weights, subset, init,control,
     stop("multi-state models do not currently support pspline terms")
   if (multi && length(attr(Terms, "specials")$ridge) > 0)
     stop("multi-state models do not currently support ridge penalties")
-
-
   strats <- attr(Terms, "specials")$strata
   hasinteractions <- FALSE
   dropterms <- NULL
@@ -249,8 +243,6 @@ PO = function (formula, data, C, df, weights, subset, init,control,
       }
       if (storage.mode(Y) != "double")
         storage.mode(Y) <- "double"
-      #counts <- .Call(Ccoxcount1, Y[sorted, ], as.integer(newstrat))
-      #tindex <- sorted[counts$index]
     }
     else {
       if (length(strats) == 0) {
@@ -266,13 +258,8 @@ PO = function (formula, data, C, df, weights, subset, init,control,
       }
       if (storage.mode(Y) != "double")
         storage.mode(Y) <- "double"
-      # counts <- .Call(Ccoxcount2, Y, as.integer(sort.start -
-      #                                             1L), as.integer(sort.end - 1L), as.integer(newstrat))
-      #tindex <- counts$index
     }
     type <- "right"
-    #mf <- mf[tindex, ]
-    #istrat <- rep(1:length(counts$nrisk), counts$nrisk)
     weights <- model.weights(mf)
     if (!is.null(weights) && any(!is.finite(weights)))
       stop("weights must be finite")
@@ -303,38 +290,6 @@ PO = function (formula, data, C, df, weights, subset, init,control,
   ncluster <- 0
   contrast.arg <- NULL
   attr(Terms, "intercept") <- 1
-  # if (multi) {
-  #   mcheck <- survcheck2(Y, istate)
-  #   if (mcheck$flag["overlap"] > 0)
-  #     stop("data set has overlapping intervals for one or more subjects")
-  #   transitions <- mcheck$transitions
-  #   states <- mcheck$states
-  #     covlist2 <- parsecovar2(covlist, NULL, dformula = dformula,
-  #                             Terms, transitions, states)
-  #   tmap <- covlist2$tmap
-  #   if (!is.null(covlist)) {
-  #     good.tran <- bad.tran <- rep(FALSE, nrow(Y))
-  #     termname <- rownames(attr(Terms, "factors"))
-  #     trow <- (!is.na(match(rownames(tmap), termname)))
-  #     termiss <- matrix(0L, nrow(mf), ncol(mf))
-  #     for (i in 1:ncol(mf)) {
-  #       xx <- is.na(mf[[i]])
-  #       if (is.matrix(xx))
-  #         termiss[, i] <- apply(xx, 1, any)
-  #       else termiss[, i] <- xx
-  #     }
-  #
-  #     n.partially.used <- sum(good.tran & bad.tran & !is.na(Y))
-  #     omit <- (!good.tran & bad.tran) | is.na(Y)
-  #     if (all(omit))
-  #       stop("all observations deleted due to missing values")
-  #     temp <- setNames(seq(omit)[omit], attr(mf, "row.names")[omit])
-  #     attr(temp, "class") <- "omit"
-  #     mf <- mf[!omit, , drop = FALSE]
-  #     Y <- Y[!omit]
-  #
-  #   }
-  # }
   if (length(dropterms)) {
     Terms2 <- Terms[-dropterms]
     X <- model.matrix(Terms2, mf, constrasts.arg = contrast.arg)
@@ -392,9 +347,6 @@ PO = function (formula, data, C, df, weights, subset, init,control,
                                                      0))
       stop("initial values lead to overflow or underflow of the exp function")
   }
-
-  #===============================================================================#
-  #use PO.fit
   nn = length(Y[,2])
   if(missing(df)){
     df = as.integer(nn**(1/3))
@@ -423,7 +375,6 @@ PO = function (formula, data, C, df, weights, subset, init,control,
                    method = method,control = control)
     }
   }
-
   if (is.character(fit)) {
     fit <- list(fail = fit)
     class(fit) <- "PO"
@@ -450,10 +401,6 @@ PO = function (formula, data, C, df, weights, subset, init,control,
     }
     if (x) {
       fit$x <- X
-      if (length(timetrans))
-        fit$strata <- istrat
-      else if (length(strats))
-        fit$strata <- strata.keep
     }
     if (y)
       fit$y <- Y
@@ -463,14 +410,3 @@ PO = function (formula, data, C, df, weights, subset, init,control,
   fit
 }
 
-#res = PO.play(Surv(dat$X, dat$delta) ~ dat$Z[,1]+ dat$Z[,2],data = dat)
-# set.seed(1)
-# df = 10
-# nn = 1000
-# beta = c(0.5,0,-0.5, rep(0,10))
-# sim_PO_data = PO.sim(nn, beta,
-#                      C.gen = function(n)
-#                        5+rbinom(n,1,0.5)*runif(n, -5, 0))
-# res = PO(Surv(X, delta) ~ Z[,1]+ Z[,2]+ Z[,3]+ Z[,4]+ Z[,5]+ Z[,6]+ Z[,7]
-#          + Z[,8]+ Z[,9]+ Z[,10]+ Z[,11]+ Z[,12]+ Z[,13],
-#          data = sim_PO_data,method = 'NPMLE')
