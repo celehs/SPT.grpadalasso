@@ -7,10 +7,10 @@
 \format{
 A list with 4 elements:
 \describe{
-\item{delta}{}
-\item{X}{}
-\item{Z}{}
-\item{C}{}
+\item{delta}{Event status}
+\item{X}{Observation time}
+\item{Z}{Covariates}
+\item{C}{Censoring time}
 }
 }
 \usage{
