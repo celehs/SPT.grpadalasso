@@ -21,7 +21,7 @@ remotes::install_github("celehs/SPT.grpadalasso")
 
 ## Getting Started
 
-Follow the [Examples]().
+Follow the [Examples]()
 
 ## Citations
 
