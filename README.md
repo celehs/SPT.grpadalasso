@@ -3,6 +3,7 @@
 
 ## Overview
 
+Estimation and variable selection via adaptive group Lasso for semi-parametric transformation models. 
 
 ## Installation
 
@@ -25,4 +26,4 @@ remotes::install_github("celehs/SPT.grpadalasso")
 
 ## Citations
 
-
+Liang L., Hou J., Uno H., Cho K., Ma Y., Cai T., Robust approach to event time annotation using longitudinal medical encounters. arXiv:2110.09612.
