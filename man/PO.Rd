@@ -16,7 +16,7 @@ as returned by the \code{Surv.cure} function.}
 \item{data}{a \code{data.frame} in which to interpret the variables named in
 the \code{formula}, or in the \code{subset} and the \code{weights} argument.}
 
-\item{C}{need to edit.}
+\item{C}{Censoring time}
 
 \item{df}{degree of freedom}
 

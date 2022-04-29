@@ -7,7 +7,7 @@
 #' as returned by the \code{Surv.cure} function.
 #' @param data a \code{data.frame} in which to interpret the variables named in
 #'  the \code{formula}, or in the \code{subset} and the \code{weights} argument.
-#' @param C need to edit.
+#' @param C Censoring time
 #' @param df degree of freedom
 #' @param weights vector of case weights, see the note below. For a thorough
 #'  discussion of these see the book by Therneau and Grambsch.

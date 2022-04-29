@@ -13,15 +13,15 @@ PO.sim(
 )
 }
 \arguments{
-\item{n}{...}
+\item{n}{Sample size}
 
-\item{beta}{...}
+\item{beta}{True parameter, p-dimensional vector}
 
-\item{Z.gen}{...}
+\item{Z.gen}{Function to generate n by p covariate matrix}
 
-\item{inv.m}{...}
+\item{inv.m}{Inverse of baseline hazard function}
 
-\item{C.gen}{...}
+\item{C.gen}{Function to generate n-dimensional censoring time}
 }
 \description{
 generate data for the example

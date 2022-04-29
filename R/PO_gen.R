@@ -9,11 +9,11 @@ PO.gen = function(lp, inv.m)
 
 
 #' generate data for the example
-#' @param n ...
-#' @param beta ...
-#' @param Z.gen ...
-#' @param inv.m ...
-#' @param C.gen ...
+#' @param n Sample size
+#' @param beta True parameter, p-dimensional vector
+#' @param Z.gen Function to generate n by p covariate matrix
+#' @param inv.m Inverse of baseline hazard function
+#' @param C.gen Function to generate n-dimensional censoring time
 #' @export
 PO.sim = function(n, beta,
                   Z.gen = function(n, p) matrix(rnorm(n*p), n, p),
