@@ -15,7 +15,7 @@ remotes::install_github("celehs/SPT.grpadalasso")
 ```
 
 ## Getting Started
-Follow the [Example](https://celehs.github.io/SPT.grpadalasso/articles/example.html),
+Follow the [Example](https://celehs.github.io/SPT.grpadalasso/articles/example.html)
 
 
 ## Citations
