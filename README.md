@@ -7,12 +7,6 @@ Estimation and variable selection via adaptive group Lasso for semi-parametric t
 
 ## Installation
 
-Install stable version from CRAN:
-
-``` r
-install.packages("SPT.grpadalasso")
-```
-
 Install development version from GitHub:
 
 ``` r
@@ -21,7 +15,7 @@ remotes::install_github("celehs/SPT.grpadalasso")
 ```
 
 ## Getting Started
-
+Follow the [Example](https://celehs.github.io/SPT.grpadalasso/articles/example.html),
 
 
 ## Citations
