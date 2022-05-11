@@ -4,76 +4,68 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="SPT.grpadalasso">
 <title>Simulated Example • SPT.grpadalasso</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Simulated Example">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Simulated Example">
 <meta property="og:description" content="SPT.grpadalasso">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">SPT.grpadalasso</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">SPT.grpadalasso</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../reference/index.html">Reference</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/example.html">Simulated Example</a>
-    </li>
-  </ul>
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/example.html">Simulated Example</a>
+  </div>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav"></ul>
 </div>
-<!--/.nav-collapse -->
+
+    
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
-      
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Simulated Example</h1>
+
+
+<div class="row">
+  <main id="main"><div class="page-header">
+      <img src="" class="logo" alt=""><h1>Simulated Example</h1>
             
       
       
-      <div class="hidden name"><code>example.Rmd</code></div>
-
+      <div class="d-none name"><code>example.Rmd</code></div>
     </div>
 
     
@@ -103,14 +95,183 @@
 <code class="sourceCode R"><span class="va">res_umethod</span> <span class="op">=</span> <span class="fu"><a href="../reference/PO.html">PO</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">delta</span><span class="op">)</span> <span class="op">~</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">6</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">7</span><span class="op">]</span>
          <span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">8</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">9</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">10</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">11</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">12</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">13</span><span class="op">]</span>,
          data <span class="op">=</span> <span class="va">sim_PO_data</span>,method <span class="op">=</span> <span class="st">'U-method'</span><span class="op">)</span>
+<span class="co">#&gt;    [1] 0.9937057 0.9768634 0.9989970 0.5063930 0.7065919 0.9306157 0.9881001</span>
+<span class="co">#&gt;    [8] 0.5063930 0.7650560 0.9856813 0.5063930 0.9892681 0.9989970 0.9215874</span>
+<span class="co">#&gt;   [15] 0.9807213 0.9372290 0.9645535 0.8357941 0.8665045 0.9892681 0.6959919</span>
+<span class="co">#&gt;   [22] 0.9728937 0.7529593 0.9101969 0.8455565 0.9947941 0.8596212 0.8984962</span>
+<span class="co">#&gt;   [29] 0.9544059 0.8710117 0.9063360 0.9452513 0.8984962 0.9197028 0.9082685</span>
+<span class="co">#&gt;   [36] 0.5063930 0.9288955 0.9044035 0.6243939 0.9339663 0.5906406 0.7065919</span>
+<span class="co">#&gt;   [43] 0.9288955 0.8883229 0.9755575 0.7401385 0.9856813 0.9574025 0.9969392</span>
+<span class="co">#&gt;   [50] 0.9969392 0.9979755 0.9969392 0.8526887 0.9947941 0.9892681 0.9742338</span>
+<span class="co">#&gt;   [57] 0.9989970 0.9755575 0.6776363 0.8526887 0.6441352 0.9024502 0.7529593</span>
+<span class="co">#&gt;   [64] 0.9306157 0.7030939 0.7529593 0.9271023 0.8479384 0.9687595 0.8526887</span>
+<span class="co">#&gt;   [71] 0.8841228 0.8526887 0.8819716 0.8642243 0.5402537 0.5063930 0.8665045</span>
+<span class="co">#&gt;   [78] 0.9755575 0.7560077 0.9306157 0.5063930 0.9388590 0.6665879 0.9807213</span>
+<span class="co">#&gt;   [85] 0.6554147 0.9892681 0.9388590 0.8382596 0.9215874 0.9844614 0.8021222</span>
+<span class="co">#&gt;   [92] 0.9768634 0.5063930 0.9513904 0.8984962 0.9701454 0.9288955 0.9339663</span>
+<span class="co">#&gt;   [99] 0.9969392 0.8282936 0.9288955 0.8710117 0.7065919 0.9844614 0.8841228</span>
+<span class="co">#&gt;  [106] 0.8923978 0.7824672 0.5063930 0.5063930 0.9892681 0.5728633 0.9892681</span>
+<span class="co">#&gt;  [113] 0.8984962 0.9288955 0.5063930 0.8841228 0.9559042 0.9588709 0.6813192</span>
+<span class="co">#&gt;  [120] 0.9903872 0.9892681 0.9388590 0.5063930 0.9794409 0.9969392 0.5063930</span>
+<span class="co">#&gt;  [127] 0.9807213 0.9617270 0.6995429 0.9781573 0.5063930 0.9306157 0.9574025</span>
+<span class="co">#&gt;  [134] 0.9881001 0.8048412 0.8984962 0.9288955 0.5063930 0.6479242 0.9856813</span>
+<span class="co">#&gt;  [141] 0.9903872 1.0000000 0.8308189 0.8710117 0.5063930 0.8407178 0.5063930</span>
+<span class="co">#&gt;  [148] 0.8455565 0.9024502 0.9574025 0.8841228 0.6077925 0.9819738 0.7466317</span>
+<span class="co">#&gt;  [155] 0.5063930 0.9603106 0.9947941 0.9306157 0.7767031 0.5210004 0.9881001</span>
+<span class="co">#&gt;  [162] 0.9159335 0.9215874 0.9937057 0.9574025 0.9881001 0.9969392 0.9881001</span>
+<span class="co">#&gt;  [169] 0.8642243 0.9903872 0.8573104 0.9271023 0.8642243 0.9947941 0.8883229</span>
+<span class="co">#&gt;  [176] 0.5402537 0.9742338 0.8754164 0.6120428 0.9215874 0.9306157 0.9903872</span>
+<span class="co">#&gt;  [183] 0.5063930 0.9339663 0.5063930 0.8798099 0.8048412 0.9588709 0.9979755</span>
+<span class="co">#&gt;  [190] 0.7650560 0.9271023 0.9926016 0.9306157 0.8710117 0.5774098 0.5063930</span>
+<span class="co">#&gt;  [197] 0.9807213 0.5063930 0.8862228 0.9483484 0.9024502 0.9339663 0.9121171</span>
+<span class="co">#&gt;  [204] 0.9339663 0.9121171 0.9832184 0.8619258 0.9215874 0.9794409 0.6243939</span>
+<span class="co">#&gt;  [211] 0.9588709 0.9819738 0.5063930 0.9513904 0.5819208 0.9673616 0.8282936</span>
+<span class="co">#&gt;  [218] 0.9969392 0.9728937 0.5636235 0.8883229 0.7620558 0.9468163 0.7650560</span>
+<span class="co">#&gt;  [225] 0.8333214 0.9288955 0.7434135 0.9004840 0.9937057 0.9701454 0.5863293</span>
+<span class="co">#&gt;  [232] 0.7824672 0.9404639 0.9288955 0.9687595 0.7824672 0.9979755 0.5063930</span>
+<span class="co">#&gt;  [239] 0.9937057 0.8154146 0.9892681 0.9914962 0.9603106 0.5063930 0.7466317</span>
+<span class="co">#&gt;  [246] 0.9989970 0.9101969 0.5449515 0.7065919 0.9881001 0.9452513 0.9121171</span>
+<span class="co">#&gt;  [253] 0.5063930 0.8642243 0.9271023 0.9881001 0.9271023 0.8021222 0.9306157</span>
+<span class="co">#&gt;  [260] 0.7650560 0.9807213 0.9819738 0.9288955 0.9969392 0.9844614 0.9306157</span>
+<span class="co">#&gt;  [267] 0.5258245 0.5063930 0.9892681 0.9989970 0.9306157 0.7529593 0.6441352</span>
+<span class="co">#&gt;  [274] 0.9937057 0.8048412 0.9947941 0.9768634 0.9339663 0.9468163 0.5063930</span>
+<span class="co">#&gt;  [281] 0.6323990 0.9755575 0.9892681 0.9979755 0.9288955 0.5063930 0.5589655</span>
+<span class="co">#&gt;  [288] 0.7498089 0.7434135 0.9574025 0.9989970 0.9306157 0.5210004 0.5063930</span>
+<span class="co">#&gt;  [295] 0.5063930 0.8798099 0.9159335 0.7335005 0.8984962 0.9701454 0.7909415</span>
+<span class="co">#&gt;  [302] 0.9339663 0.9844614 0.9306157 0.9388590 0.6243939 0.8101537 0.9937057</span>
+<span class="co">#&gt;  [309] 0.5063930 0.9388590 0.6591599 0.9436573 0.5063930 0.9645535 0.9832184</span>
+<span class="co">#&gt;  [316] 0.7301815 0.6629051 0.9881001 0.9969392 0.6959919 0.7650560 0.8127927</span>
+<span class="co">#&gt;  [323] 0.8479384 0.9004840 0.9781573 0.9881001 0.8549996 0.9468163 0.9659576</span>
+<span class="co">#&gt;  [330] 0.9355991 0.8431407 0.9781573 0.9937057 0.9881001 0.9159335 0.8710117</span>
+<span class="co">#&gt;  [337] 0.8282936 0.5063930 0.9903872 0.9989970 0.9468163 0.5063930 0.6441352</span>
+<span class="co">#&gt;  [344] 0.5402537 0.5063930 0.8206005 0.8841228 0.7679761 0.5063930 0.9742338</span>
+<span class="co">#&gt;  [351] 0.9588709 0.8154146 0.9234306 0.8021222 0.8048412 0.5496494 0.6120428</span>
+<span class="co">#&gt;  [358] 0.9468163 0.5063930 0.9004840 0.9807213 0.7993562 0.9101969 0.9881001</span>
+<span class="co">#&gt;  [365] 0.9856813 0.7201483 0.7167673 0.8883229 0.9781573 0.7434135 0.9947941</span>
+<span class="co">#&gt;  [372] 0.9903872 0.8841228 0.9306157 0.9947941 0.5063930 0.9215874 0.9728937</span>
+<span class="co">#&gt;  [379] 1.0000000 0.7529593 0.9544059 0.9215874 0.5992320 0.5063930 0.9892681</span>
+<span class="co">#&gt;  [386] 0.9468163 0.8282936 0.7650560 0.9728937 0.9687595 0.6923480 0.9271023</span>
+<span class="co">#&gt;  [393] 0.8180281 0.5063930 0.8455565 0.9892681 0.7301815 0.5063930 0.5063930</span>
+<span class="co">#&gt;  [400] 0.9937057 0.9969392 0.9969392 0.9339663 0.8407178 0.9215874 0.9452513</span>
+<span class="co">#&gt;  [407] 0.9969392 0.9844614 0.9574025 0.8984962 0.9483484 0.8883229 0.9574025</span>
+<span class="co">#&gt;  [414] 0.8231649 0.9807213 0.5063930 0.5063930 0.5063930 0.8074975 0.9271023</span>
+<span class="co">#&gt;  [421] 0.9989970 0.9807213 0.9588709 0.9271023 0.7937663 0.9288955 0.9728937</span>
+<span class="co">#&gt;  [428] 0.9914962 0.9807213 0.9881001 0.8944352 0.5063930 0.9271023 0.9768634</span>
+<span class="co">#&gt;  [435] 0.5819208 0.8526887 0.5063930 0.9755575 0.9979755 0.9574025 0.6402549</span>
+<span class="co">#&gt;  [442] 0.9588709 0.9868922 0.9892681 0.9979755 0.5063930 0.5063930 0.9881001</span>
+<span class="co">#&gt;  [449] 0.8819716 0.5949518 0.5063930 0.7560077 0.9588709 0.9234306 0.5774098</span>
+<span class="co">#&gt;  [456] 0.5306486 0.9969392 0.9673616 0.7401385 0.9728937 0.9937057 0.9892681</span>
+<span class="co">#&gt;  [463] 0.7937663 0.8282936 0.8455565 0.9979755 0.7529593 0.7065919 0.8357941</span>
+<span class="co">#&gt;  [470] 0.6959919 0.9979755 0.6120428 0.5543074 0.9645535 0.9339663 0.6120428</span>
+<span class="co">#&gt;  [477] 0.9937057 0.5063930 0.9574025 0.5063930 0.7824672 0.9603106 0.5063930</span>
+<span class="co">#&gt;  [484] 0.5728633 0.9687595 0.9588709 0.9947941 0.6702707 0.9701454 0.9881001</span>
+<span class="co">#&gt;  [491] 0.7937663 0.9645535 0.9881001 0.9588709 0.7268473 0.8841228 0.6959919</span>
+<span class="co">#&gt;  [498] 0.8526887 0.8048412 0.7466317 0.7268473 0.9288955 0.9868922 0.9468163</span>
+<span class="co">#&gt;  [505] 0.5496494 0.9483484 0.5063930 0.5863293 0.8984962 0.5063930 0.9947941</span>
+<span class="co">#&gt;  [512] 0.7100053 0.7708851 0.9969392 0.9969392 0.8964680 0.9969392 0.9892681</span>
+<span class="co">#&gt;  [519] 0.8883229 0.9339663 0.7937663 0.5063930 0.9288955 0.6161782 0.9728937</span>
+<span class="co">#&gt;  [526] 0.9452513 0.9728937 0.9603106 0.9755575 0.5063930 0.5063930 0.9947941</span>
+<span class="co">#&gt;  [533] 0.9513904 0.9468163 0.9742338 0.7401385 0.9947941 0.9892681 0.7993562</span>
+<span class="co">#&gt;  [540] 0.8431407 0.9989970 0.7100053 0.8455565 0.5063930 0.9969392 0.5063930</span>
+<span class="co">#&gt;  [547] 0.9044035 0.8776159 0.7993562 0.5063930 0.9892681 0.7824672 0.8407178</span>
+<span class="co">#&gt;  [554] 0.9969392 0.6120428 0.9728937 0.5063930 0.9140253 0.9979755 0.9603106</span>
+<span class="co">#&gt;  [561] 0.6923480 0.9513904 0.9881001 0.8333214 0.5063930 0.9388590 0.6077925</span>
+<span class="co">#&gt;  [568] 0.9044035 0.9969392 0.9755575 0.9588709 0.9468163 0.9513904 0.5063930</span>
+<span class="co">#&gt;  [575] 0.9969392 0.8526887 0.9701454 0.9989970 0.9544059 0.5063930 0.7030939</span>
+<span class="co">#&gt;  [582] 0.9215874 0.5682434 0.9288955 0.8333214 0.9807213 0.9892681 0.9979755</span>
+<span class="co">#&gt;  [589] 0.5063930 0.9989970 0.9004840 0.9728937 0.8710117 0.9715195 0.9271023</span>
+<span class="co">#&gt;  [596] 0.9603106 0.9969392 0.8127927 0.7030939 0.9288955 0.9288955 0.9528982</span>
+<span class="co">#&gt;  [603] 0.9881001 0.6959919 0.9768634 0.5063930 0.9339663 0.9903872 0.6959919</span>
+<span class="co">#&gt;  [610] 0.6850020 0.5063930 0.9159335 0.9969392 0.9979755 0.9969392 0.8180281</span>
+<span class="co">#&gt;  [617] 0.6323990 0.6629051 0.5161313 0.9892681 0.8101537 0.8407178 1.0000000</span>
+<span class="co">#&gt;  [624] 0.8798099 0.6479242 0.9989970 0.5063930 0.9979755 0.8883229 0.9807213</span>
+<span class="co">#&gt;  [631] 0.9844614 0.8819716 0.8883229 0.5063930 0.8883229 0.9892681 0.7529593</span>
+<span class="co">#&gt;  [638] 0.9498706 0.8407178 0.8841228 0.8282936 0.9969392 0.9742338 0.8127927</span>
+<span class="co">#&gt;  [645] 0.8526887 0.5063930 0.9468163 0.9989970 0.9958672 0.9969392 0.9322925</span>
+<span class="co">#&gt;  [652] 0.9903872 0.5063930 0.5863293 0.8665045 0.9892681 0.9617270 0.9742338</span>
+<span class="co">#&gt;  [659] 0.9322925 0.9498706 0.9271023 0.9989970 0.7852920 0.5819208 0.8333214</span>
+<span class="co">#&gt;  [666] 0.8984962 0.9306157 0.8021222 0.9355991 0.9844614 0.9452513 0.8021222</span>
+<span class="co">#&gt;  [673] 0.9388590 0.9892681 0.9844614 0.5063930 0.9844614 0.5063930 0.9781573</span>
+<span class="co">#&gt;  [680] 0.9004840 0.8180281 0.9452513 0.7529593 0.8665045 0.9339663 0.9603106</span>
+<span class="co">#&gt;  [687] 0.9755575 0.9288955 0.8883229 0.5728633 0.8665045 0.9969392 0.9781573</span>
+<span class="co">#&gt;  [694] 0.5354727 0.9603106 0.8526887 0.9728937 0.6202861 0.8180281 0.5063930</span>
+<span class="co">#&gt;  [701] 0.9969392 0.7767031 0.9044035 0.9388590 0.7650560 0.8776159 0.7590318</span>
+<span class="co">#&gt;  [708] 0.9588709 0.9728937 0.9603106 0.5063930 0.9513904 0.5063930 0.7529593</span>
+<span class="co">#&gt;  [715] 0.9794409 0.9728937 0.9574025 0.8798099 0.5063930 0.9603106 0.8407178</span>
+<span class="co">#&gt;  [722] 0.8841228 0.9388590 0.8206005 0.9844614 0.5063930 0.9631413 0.8798099</span>
+<span class="co">#&gt;  [729] 0.9404639 0.9892681 0.6739535 0.9215874 0.9819738 0.9588709 0.9881001</span>
+<span class="co">#&gt;  [736] 0.9728937 0.9947941 0.9603106 0.8382596 0.9768634 0.9452513 0.9979755</span>
+<span class="co">#&gt;  [743] 0.9588709 0.9574025 0.9807213 0.9881001 0.9687595 0.8021222 0.5063930</span>
+<span class="co">#&gt;  [750] 0.9742338 0.9947941 0.8710117 0.8732168 0.9252664 0.9881001 0.7498089</span>
+<span class="co">#&gt;  [757] 0.9468163 0.9159335 0.7767031 0.5063930 0.9728937 0.9881001 0.9483484</span>
+<span class="co">#&gt;  [764] 0.9755575 0.9574025 0.9892681 0.9819738 0.9420606 0.5063930 0.6283964</span>
+<span class="co">#&gt;  [771] 0.8180281 0.9969392 0.9881001 0.8308189 0.6402549 0.9339663 0.5063930</span>
+<span class="co">#&gt;  [778] 0.7201483 0.9159335 0.8503136 0.8883229 0.5063930 0.9178182 0.9881001</span>
+<span class="co">#&gt;  [785] 0.5063930 0.9024502 0.9937057 0.8455565 0.9673616 0.9856813 0.8883229</span>
+<span class="co">#&gt;  [792] 0.6243939 0.5112621 0.9404639 0.5863293 0.9937057 0.9892681 0.8798099</span>
+<span class="co">#&gt;  [799] 0.7881168 0.9892681 0.9969392 0.7133863 0.9288955 0.9215874 0.7434135</span>
+<span class="co">#&gt;  [806] 0.7795905 0.6363269 0.9914962 0.9288955 0.9807213 0.9868922 0.5063930</span>
+<span class="co">#&gt;  [813] 0.7795905 0.9288955 0.9452513 0.9881001 0.9588709 0.9339663 0.9892681</span>
+<span class="co">#&gt;  [820] 0.7030939 0.8687611 0.9768634 0.8883229 0.9603106 0.9468163 0.6323990</span>
+<span class="co">#&gt;  [827] 0.9892681 0.9969392 0.9544059 0.8903603 0.9914962 0.5354727 0.9989970</span>
+<span class="co">#&gt;  [834] 0.8308189 0.9044035 0.8841228 0.7965613 0.6479242 0.6886848 0.7368195</span>
+<span class="co">#&gt;  [841] 0.5063930 0.9844614 0.9271023 0.7434135 0.8964680 0.9844614 0.9404639</span>
+<span class="co">#&gt;  [848] 0.9807213 0.9989970 0.9452513 0.8526887 0.9742338 0.8732168 0.8180281</span>
+<span class="co">#&gt;  [855] 0.8333214 0.8596212 0.9881001 0.7560077 0.9807213 0.9903872 0.9892681</span>
+<span class="co">#&gt;  [862] 0.9631413 0.9687595 0.8101537 0.9306157 0.9844614 0.9288955 0.9673616</span>
+<span class="co">#&gt;  [869] 0.9004840 0.9926016 0.6441352 0.9574025 0.9452513 1.0000000 0.9892681</span>
+<span class="co">#&gt;  [876] 0.9215874 0.7065919 0.9881001 0.9892681 0.9728937 0.9468163 0.9159335</span>
+<span class="co">#&gt;  [883] 0.7620558 0.9807213 0.9892681 0.5819208 0.5063930 0.9271023 0.8526887</span>
+<span class="co">#&gt;  [890] 0.5063930 0.7100053 0.9742338 0.9979755 0.9856813 0.9807213 0.9234306</span>
+<span class="co">#&gt;  [897] 0.5063930 0.9687595 0.9645535 0.9728937 0.6886848 0.9121171 0.7993562</span>
+<span class="co">#&gt;  [904] 0.9544059 0.9781573 0.7498089 0.8619258 0.5063930 0.9937057 0.9701454</span>
+<span class="co">#&gt;  [911] 0.9844614 0.5063930 0.6441352 0.5063930 0.9969392 0.9892681 0.8710117</span>
+<span class="co">#&gt;  [918] 0.5063930 0.9958672 0.9452513 0.7679761 0.9574025 0.9856813 0.7234978</span>
+<span class="co">#&gt;  [925] 0.7620558 0.9892681 0.6323990 0.5063930 0.9892681 0.9755575 0.7650560</span>
+<span class="co">#&gt;  [932] 0.9969392 0.9947941 0.8308189 0.5063930 0.8687611 0.7824672 0.9844614</span>
+<span class="co">#&gt;  [939] 0.5063930 0.9989970 0.9082685 0.6516694 0.9768634 0.5063930 0.9819738</span>
+<span class="co">#&gt;  [946] 0.8257292 0.5949518 0.8841228 0.5063930 0.9892681 0.9881001 0.6161782</span>
+<span class="co">#&gt;  [953] 0.9452513 0.8048412 0.8048412 0.5636235 0.8883229 0.9288955 0.8048412</span>
+<span class="co">#&gt;  [960] 0.8798099 0.9881001 0.9844614 0.6629051 0.5063930 0.9989970 0.6402549</span>
+<span class="co">#&gt;  [967] 0.9881001 0.6035123 0.7201483 0.8984962 0.9388590 0.5063930 0.8944352</span>
+<span class="co">#&gt;  [974] 0.9892681 0.6243939 0.9436573 0.9339663 0.8710117 0.7401385 0.9937057</span>
+<span class="co">#&gt;  [981] 0.9044035 0.5063930 0.5063930 0.9892681 0.6629051 0.9989970 0.9468163</span>
+<span class="co">#&gt;  [988] 0.9807213 0.9979755 0.9728937 0.9969392 0.9483484 0.7737941 0.9728937</span>
+<span class="co">#&gt;  [995] 0.9742338 0.5063930 0.9701454 0.9288955 0.7466317 0.9755575</span>
+<span class="co">#&gt; [1] "u:"</span>
+<span class="co">#&gt;       Z[, 1]       Z[, 2]       Z[, 3]       Z[, 4]       Z[, 5]       Z[, 6] </span>
+<span class="co">#&gt; -0.120841891  0.033402979  0.147759293  0.022446306  0.007978157  0.024007847 </span>
+<span class="co">#&gt;       Z[, 7]       Z[, 8]       Z[, 9]      Z[, 10]      Z[, 11]      Z[, 12] </span>
+<span class="co">#&gt; -0.012858303  0.007220283  0.011568178 -0.016790860 -0.004099945 -0.011077007 </span>
+<span class="co">#&gt;      Z[, 13] </span>
+<span class="co">#&gt; -0.014657186 </span>
+<span class="co">#&gt; [1] "u:"</span>
+<span class="co">#&gt;        Z[, 1]        Z[, 2]        Z[, 3]        Z[, 4]        Z[, 5] </span>
+<span class="co">#&gt; -0.0077698588  0.0022915635  0.0096833283  0.0013301797  0.0004315673 </span>
+<span class="co">#&gt;        Z[, 6]        Z[, 7]        Z[, 8]        Z[, 9]       Z[, 10] </span>
+<span class="co">#&gt;  0.0013555698 -0.0008531405  0.0006166062  0.0007363834 -0.0007496113 </span>
+<span class="co">#&gt;       Z[, 11]       Z[, 12]       Z[, 13] </span>
+<span class="co">#&gt; -0.0003546953 -0.0004513278 -0.0011419903 </span>
+<span class="co">#&gt; [1] "u:"</span>
+<span class="co">#&gt;        Z[, 1]        Z[, 2]        Z[, 3]        Z[, 4]        Z[, 5] </span>
+<span class="co">#&gt; -6.795130e-05 -6.920670e-06  1.976111e-04  4.617652e-05 -1.058675e-04 </span>
+<span class="co">#&gt;        Z[, 6]        Z[, 7]        Z[, 8]        Z[, 9]       Z[, 10] </span>
+<span class="co">#&gt;  2.801684e-05 -1.521051e-05  1.247546e-04 -1.395160e-05  2.492200e-05 </span>
+<span class="co">#&gt;       Z[, 11]       Z[, 12]       Z[, 13] </span>
+<span class="co">#&gt;  1.364674e-05  7.704049e-05 -5.818981e-05 </span>
+<span class="co">#&gt; [1] "u:"</span>
+<span class="co">#&gt;        Z[, 1]        Z[, 2]        Z[, 3]        Z[, 4]        Z[, 5] </span>
+<span class="co">#&gt; -7.801819e-09  7.572644e-09  6.311428e-08  2.350123e-08 -1.681624e-08 </span>
+<span class="co">#&gt;        Z[, 6]        Z[, 7]        Z[, 8]        Z[, 9]       Z[, 10] </span>
+<span class="co">#&gt;  2.514315e-08 -2.152803e-08  4.863672e-08 -4.512412e-08 -2.061544e-08 </span>
+<span class="co">#&gt;       Z[, 11]       Z[, 12]       Z[, 13] </span>
+<span class="co">#&gt; -1.803545e-08  8.707454e-09  3.714539e-08</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">res_umethod</span><span class="op">)</span>
 <span class="co">#&gt; List of 8</span>
 <span class="co">#&gt;  $ baseline    :function (v)  </span>
 <span class="co">#&gt;   ..- attr(*, "class")= chr [1:2] "stepfun" "function"</span>
 <span class="co">#&gt;   ..- attr(*, "call")= language stepfun(tseq, c(ht[1], ht))</span>
-<span class="co">#&gt;   .. ..- attr(*, "srcref")= 'srcref' int [1:8] 26 5 26 40 5 40 534 534</span>
-<span class="co">#&gt;   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' &lt;environment: 0x7f8c35f9cad0&gt; </span>
-<span class="co">#&gt;  $ coefficients: Named num [1:13] 0.972 -0.341 -1.031 -0.242 -0.199 ...</span>
+<span class="co">#&gt;  $ coefficients: Named num [1:13] 0.4026 -0.1322 -0.4929 -0.0506 -0.0333 ...</span>
 <span class="co">#&gt;   ..- attr(*, "names")= chr [1:13] "Z[, 1]" "Z[, 2]" "Z[, 3]" "Z[, 4]" ...</span>
 <span class="co">#&gt;  $ n           : int 1000</span>
 <span class="co">#&gt;  $ nevent      : num 708</span>
@@ -141,9 +302,37 @@
 <code class="sourceCode R"><span class="va">res_npmle</span> <span class="op">=</span> <span class="fu"><a href="../reference/PO.html">PO</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">delta</span><span class="op">)</span> <span class="op">~</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">6</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">7</span><span class="op">]</span>
          <span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">8</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">9</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">10</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">11</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">12</span><span class="op">]</span><span class="op">+</span> <span class="va">Z</span><span class="op">[</span>,<span class="fl">13</span><span class="op">]</span>,
          data <span class="op">=</span> <span class="va">sim_PO_data</span>,method <span class="op">=</span> <span class="st">'NPMLE'</span><span class="op">)</span>
+<span class="co">#&gt; [1] "u:"</span>
+<span class="co">#&gt;       Z[, 1]       Z[, 2]       Z[, 3]       Z[, 4]       Z[, 5]       Z[, 6] </span>
+<span class="co">#&gt; -0.120841891  0.033402979  0.147759293  0.022446306  0.007978157  0.024007847 </span>
+<span class="co">#&gt;       Z[, 7]       Z[, 8]       Z[, 9]      Z[, 10]      Z[, 11]      Z[, 12] </span>
+<span class="co">#&gt; -0.012858303  0.007220283  0.011568178 -0.016790860 -0.004099945 -0.011077007 </span>
+<span class="co">#&gt;      Z[, 13] </span>
+<span class="co">#&gt; -0.014657186 </span>
+<span class="co">#&gt; [1] "u:"</span>
+<span class="co">#&gt;        Z[, 1]        Z[, 2]        Z[, 3]        Z[, 4]        Z[, 5] </span>
+<span class="co">#&gt; -0.0077698588  0.0022915635  0.0096833283  0.0013301797  0.0004315673 </span>
+<span class="co">#&gt;        Z[, 6]        Z[, 7]        Z[, 8]        Z[, 9]       Z[, 10] </span>
+<span class="co">#&gt;  0.0013555698 -0.0008531405  0.0006166062  0.0007363834 -0.0007496113 </span>
+<span class="co">#&gt;       Z[, 11]       Z[, 12]       Z[, 13] </span>
+<span class="co">#&gt; -0.0003546953 -0.0004513278 -0.0011419903 </span>
+<span class="co">#&gt; [1] "u:"</span>
+<span class="co">#&gt;        Z[, 1]        Z[, 2]        Z[, 3]        Z[, 4]        Z[, 5] </span>
+<span class="co">#&gt; -6.795130e-05 -6.920670e-06  1.976111e-04  4.617652e-05 -1.058675e-04 </span>
+<span class="co">#&gt;        Z[, 6]        Z[, 7]        Z[, 8]        Z[, 9]       Z[, 10] </span>
+<span class="co">#&gt;  2.801684e-05 -1.521051e-05  1.247546e-04 -1.395160e-05  2.492200e-05 </span>
+<span class="co">#&gt;       Z[, 11]       Z[, 12]       Z[, 13] </span>
+<span class="co">#&gt;  1.364674e-05  7.704049e-05 -5.818981e-05 </span>
+<span class="co">#&gt; [1] "u:"</span>
+<span class="co">#&gt;        Z[, 1]        Z[, 2]        Z[, 3]        Z[, 4]        Z[, 5] </span>
+<span class="co">#&gt; -7.801819e-09  7.572644e-09  6.311428e-08  2.350123e-08 -1.681624e-08 </span>
+<span class="co">#&gt;        Z[, 6]        Z[, 7]        Z[, 8]        Z[, 9]       Z[, 10] </span>
+<span class="co">#&gt;  2.514315e-08 -2.152803e-08  4.863672e-08 -4.512412e-08 -2.061544e-08 </span>
+<span class="co">#&gt;       Z[, 11]       Z[, 12]       Z[, 13] </span>
+<span class="co">#&gt; -1.803545e-08  8.707454e-09  3.714539e-08</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">res_npmle</span><span class="op">)</span>
 <span class="co">#&gt; List of 7</span>
-<span class="co">#&gt;  $ coefficients: Named num [1:13] 0.4025 -0.1291 -0.5168 -0.0372 -0.0174 ...</span>
+<span class="co">#&gt;  $ coefficients: Named num [1:13] 0.3202 -0.1058 -0.4108 -0.0351 -0.0206 ...</span>
 <span class="co">#&gt;   ..- attr(*, "names")= chr [1:13] "Z[, 1]" "Z[, 2]" "Z[, 3]" "Z[, 4]" ...</span>
 <span class="co">#&gt;  $ n           : int 1000</span>
 <span class="co">#&gt;  $ nevent      : num 708</span>
@@ -169,32 +358,25 @@
 <span class="co">#&gt;  $ formula     :Class 'formula'  language Surv(X, delta) ~ Z[, 1] + Z[, 2] + Z[, 3] + Z[, 4] + Z[, 5] + Z[, 6] +      Z[, 7] + Z[, 8] + Z[, 9] + Z[, 10] + | __truncated__</span>
 <span class="co">#&gt;   .. ..- attr(*, ".Environment")=&lt;environment: R_GlobalEnv&gt; </span>
 <span class="co">#&gt;  $ call        : language PO(formula = Surv(X, delta) ~ Z[, 1] + Z[, 2] + Z[, 3] + Z[, 4] + Z[, 5] +      Z[, 6] + Z[, 7] + Z[, 8] + Z[, 9]| __truncated__ ...</span></code></pre></div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-      </div>
-
+  </main>
 </div>
 
 
 
-      <footer><div class="copyright">
+    <footer><div class="pkgdown-footer-left">
   <p></p>
 <p>Developed by First Last.</p>
 </div>
 
-<div class="pkgdown">
+<div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 
