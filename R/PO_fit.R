@@ -16,7 +16,6 @@ PO.fit = function (delta, X, Z, C, df  , order = 1,
   }
 
   if(method == 'U-method'){
-    print(GX)
     beta = PO.ipcw(Surv(X, delta), Z,GX, maxit = control$ipcw.maxit, tol = control$ipcw.tol)
     ht = PO.base.ipcw(tseq,Surv(X, delta), Z,
                       Gtseq,

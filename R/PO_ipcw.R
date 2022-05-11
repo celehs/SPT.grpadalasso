@@ -85,7 +85,6 @@ PO.ipcw = function(surv, Z, GC,
 
   for(iter in 1:maxit)
   {
-    # print(beta)
     lp = drop(Z %*% beta)
     xi.mat[up.pos] = xi.CWY(lp[i.tri] - lp[j.tri])
     xi.mat[low.pos] = 1-xi.mat[up.pos]
@@ -94,8 +93,6 @@ PO.ipcw = function(surv, Z, GC,
     pred.fast = drop((n-2*xi.Sj) %*% Z)/n^2
 
     U = resp.fast - pred.fast
-    print('u:')
-    print(U)
     if(max(abs(U)) < tol)
     {
       break

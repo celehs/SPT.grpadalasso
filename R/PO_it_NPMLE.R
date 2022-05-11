@@ -68,14 +68,12 @@ PO.NPMLE = function(surv, Z,
   cont.lam = TRUE
   while (cont.lam)
   {
-    # print(c(a,lam[1:5]))
     a.new = coef(glm(d.pseudo ~ 1, family = binomial,
                  offset = (mX+lp-a)[pseudo.pos]))
 
     lam.new =  lam.num/(rev(cumsum(rev((1+surv[,2])*expit(lp+mX)-surv[,2])))[tk.pos])
     # neg.lam = lam.new <0
     # lam.new[neg.lam] = lam[neg.lam]/2
-    # print(sum((lam-lam.new)^2))
     update = lam.new - lam
     rescale =  min(1, max.move/sqrt(sum(update^2+(a.new -a)^2)))
     lam.new = lam + update *rescale
@@ -97,7 +95,6 @@ PO.NPMLE = function(surv, Z,
   cont.beta = TRUE
   while(cont.beta)
   {
-    # print(beta[1:5])
     a.new = coef(glm(d.pseudo ~ 1, family = binomial,
                      offset = (mX+lp-a)[pseudo.pos]))
     lam.new =  lam.num/(rev(cumsum(rev((1+surv[,2])*expit(lp+mX)-surv[,2])))[tk.pos])

@@ -19,12 +19,11 @@ library(SPT.grpadalasso)
 require(survival)
 
 ```
-```{r}
-set.seed(123)
-```
+
 
 Generate simulated data.
 ```{r}
+set.seed(123)
 df = 10
 nn = 1000
 beta = c(0.5,0,-0.5, rep(0,10))
@@ -39,7 +38,7 @@ Use U-Method
 res_umethod = PO(Surv(X, delta) ~ Z[,1]+ Z[,2]+ Z[,3]+ Z[,4]+ Z[,5]+ Z[,6]+ Z[,7]
          + Z[,8]+ Z[,9]+ Z[,10]+ Z[,11]+ Z[,12]+ Z[,13],
          data = sim_PO_data,method = 'U-method')
-str(res_umethod)
+res_umethod$coefficients
 ```
 
 Use NPMLE
@@ -47,6 +46,6 @@ Use NPMLE
 res_npmle = PO(Surv(X, delta) ~ Z[,1]+ Z[,2]+ Z[,3]+ Z[,4]+ Z[,5]+ Z[,6]+ Z[,7]
          + Z[,8]+ Z[,9]+ Z[,10]+ Z[,11]+ Z[,12]+ Z[,13],
          data = sim_PO_data,method = 'NPMLE')
-str(res_npmle)
+res_npmle$coefficients
 ```
 
