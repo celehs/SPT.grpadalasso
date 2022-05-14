@@ -1,4 +1,4 @@
-Package: SPT.grpadalasso
+Package: poreg
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
@@ -22,4 +22,4 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
-URL: https://celehs.github.io/SPT.grpadalasso/
+URL: https://celehs.github.io/poreg/
