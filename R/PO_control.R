@@ -1,4 +1,3 @@
-
 PO.control = function (inv.m = exp,  #PO.sim
                        ipcw.maxit = 1000, ipcw.tol = 1e-6,   #PO.ipcw
                        #PO.it

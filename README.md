@@ -1,9 +1,9 @@
-# PO.grpadalasso
+# poreg
 
 
 ## Overview
 
-Estimation and variable selection via adaptive group Lasso for semi-parametric transformation models. 
+Estimation and variable selection via adaptive group Lasso for proportional odds models. 
 
 ## Installation
 
@@ -11,11 +11,11 @@ Install development version from GitHub:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("celehs/SPT.grpadalasso")
+remotes::install_github("celehs/poreg")
 ```
 
 ## Getting Started
-Follow the [Example](https://celehs.github.io/SPT.grpadalasso/articles/example.html)
+Follow the [Example](https://celehs.github.io/poreg/articles/example.html)
 
 
 ## Citations
